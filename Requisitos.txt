@@ -1,0 +1,46 @@
+* Cada transação realizada no sistema deve possuir SOMENTE as seguintes informações:
+  1) Data da Transação (Date)
+  2) Tipo de Transação (Depósito, Transferência, Pagamento de Boleto)
+  3) Valor da Transação (valor maior que zero)
+
+* Sempre que a transação for do tipo DEPÓSITO, o valor da transação deve ser adicionado ao saldo da conta.
+* Sempre que a transação for do tipo TRANSFERÊNCIA ou PAGAMENTO DE BOLETO, o valor da transação deve ser subtraído do saldo da conta.
+* O saldo deve sempre ser atualizado na tela da aplicação a cada transação realizada.
+
+
+
+// Example Usage:
+const myAccount = new BankAccount("John Doe", 1000);
+const friendAccount = new BankAccount("Jane Smith", 800);
+
+console.log(myAccount.checkBalance()); // Output: Current balance: $1000
+console.log(myAccount.deposit(500)); // Output: Deposit of $500 successful. New balance: $1500
+console.log(myAccount.transferTo(friendAccount, 300)); // Output: Transfer of $300 to Jane Smith's account successful. New balance: $1200
+console.log(friendAccount.checkBalance()); // Output: Current balance: $1100
+console.log(myAccount.makePayment(200, "Electricity Bill")); // Output: Payment of $200 to Electricity Bill successful. New balance: $1000
+
+
+
+
+  // public setTransaction(newTransaction: Transacao): void {
+  //   if (newTransaction.tipoTransacao === TipoTransacao.DEPOSITO) {
+  //     this.saldo += newTransaction.valor
+  //   }
+  //   else if (newTransaction.tipoTransacao == TipoTransacao.TRANSFERENCIA || newTransaction.tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
+  //     this.saldo -= newTransaction.valor;
+  //   } else {
+  //       alert("Tipo de Transação é inválido!");
+  //       return;
+  //     }
+  // }
+
+
+  transferTo(account:string, amount:number) {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+      account.deposit(amount);
+      return `Transfer of $${amount} to ${account.accountHolder}'s account successful. New balance: $${this.balance}`;
+    } else {
+      return "Insufficient funds for transfer.";
+    }
+  }
