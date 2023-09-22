@@ -1,8 +1,9 @@
 import { TipoTransacao, Transacao } from "../types/transaction.js";
 
 const saldo = localStorage.getItem('saldo')
+let balance: number = Number(saldo)
 
-const balance: Transacao[] = JSON.parse(localStorage.getItem('transactions'), (key: string, value: string) => {
+const balanceee: Transacao[] = JSON.parse(localStorage.getItem('transactions'), (key: string, value: string) => {
   if (key === "data") {
     return new Date(value)
   }
@@ -12,36 +13,34 @@ export default class BankAccount {
   transaction: TipoTransacao
   date: Date
   valor: number
-  balance: number
   constructor(newtransaction: Transacao) {
     this.transaction = newtransaction.tipoTransacao
     this.date = newtransaction.data
     this.valor = newtransaction.valor
   }
 
-  deposit(amount: number) {
-    this.balance += amount;
-    return `Deposit of $${amount} successful. New balance: $${this.balance}`;
+  static deposit(amount: number) {
+    balance += amount;
+    console.log(`Deposit of $:${amount} successful. New balance: $${balance}`);
   }
 
-  withdraw(amount: number) {
-    if (amount <= this.balance) {
-      this.balance -= amount;
-      return `Withdrawal of $${amount} successful. New balance: $${this.balance}`;
+  static withdraw(amount: number) {
+    if (amount <= balance) {
+      balance -= amount;
+      console.log(`Withdrawal of $${amount} successful. New balance: $:${balance}`);
     } else {
-      return "Insufficient funds for withdrawal.";
+      throw new Error(`Withdrawal of $:${amount} failed)"Insufficient funds for withdrawal.`);
     }
   }
 
   static checkBalance() {
-
-    return saldo
+    return balance
   }
 
   makePayment(paymentAmount: number, payee: string) {
-    if (paymentAmount <= this.balance) {
-      this.balance -= paymentAmount;
-      return `Payment of $${paymentAmount} to ${payee} successful. New balance: $${this.balance}`;
+    if (paymentAmount <= balance) {
+      balance -= paymentAmount;
+      return `Payment of $${paymentAmount} to ${payee} successful. New balance: $${balance}`;
     } else {
       return "Insufficient funds for payment.";
     }

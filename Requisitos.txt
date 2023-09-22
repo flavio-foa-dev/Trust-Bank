@@ -22,17 +22,6 @@ console.log(myAccount.makePayment(200, "Electricity Bill")); // Output: Payment 
 
 
 
-  // public setTransaction(newTransaction: Transacao): void {
-  //   if (newTransaction.tipoTransacao === TipoTransacao.DEPOSITO) {
-  //     this.saldo += newTransaction.valor
-  //   }
-  //   else if (newTransaction.tipoTransacao == TipoTransacao.TRANSFERENCIA || newTransaction.tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
-  //     this.saldo -= newTransaction.valor;
-  //   } else {
-  //       alert("Tipo de Transação é inválido!");
-  //       return;
-  //     }
-  // }
 
 
   transferTo(account:string, amount:number) {
