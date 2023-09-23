@@ -1,3 +1,3 @@
-localStorage.setItem('saldo', "1000");
-import './components/balance.js';
-import './components/newTransaction.js';
+import "./components/nova-transacao-component.js";
+import "./components/saldo-component.js";
+import "./components/extrato-component.js";

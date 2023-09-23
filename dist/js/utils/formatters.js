@@ -1,10 +1,9 @@
-import { FormatoData } from "../types/formatterData.js";
+import { FormatoData } from "../types/FormatoData.js";
 export function formatarMoeda(valor) {
-    return valor
-        .toLocaleString("pt-br", { style: "currency", currency: "BRL" });
+    return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 }
-export function formatarData(data, format = FormatoData.PADRAO) {
-    if (FormatoData.DIA_SEMANA_DIA_MES_ANO) {
+export function formatarData(data, formato = FormatoData.PADRAO) {
+    if (formato === FormatoData.DIA_SEMANA_DIA_MES_ANO) {
         return data.toLocaleDateString("pt-br", {
             weekday: "long",
             day: "2-digit",
@@ -12,18 +11,8 @@ export function formatarData(data, format = FormatoData.PADRAO) {
             year: "numeric"
         });
     }
-    else if (FormatoData.DIA_MES) {
-        return data.toLocaleDateString("pt-br", {
-            day: "2-digit",
-            month: "2-digit",
-        });
+    else if (formato === FormatoData.DIA_MES) {
+        return data.toLocaleDateString("pt-br", { day: "2-digit", month: "2-digit" });
     }
-    else {
-        return data.toLocaleDateString("pt-br");
-    }
-}
-export function formatarInformacoes(valor, data, formatoData) {
-    const dataFormatada = formatarData(data, formatoData);
-    const valorFormatado = formatarMoeda(valor);
-    return `${dataFormatada} - ${valorFormatado}`;
+    return data.toLocaleDateString("pt-br");
 }
