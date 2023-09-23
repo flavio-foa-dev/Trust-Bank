@@ -37,3 +37,16 @@ export function formatarInformacoes(valor: number, data: Date, formatoData: Form
   const valorFormatado = formatarMoeda(valor);
   return `${dataFormatada} - ${valorFormatado}`;
 }
+
+interface Produto {
+  nome: string; preco: number; quantidade: number;
+  }
+
+  function calcularValorTotal<T>(produtos: T[]): number {
+  let valorTotal = 0;
+  for (let x = 0; x < produtos.length; x++) {
+  //valorTotal += produtos[x].preco * produtos[x].quantidade;
+  }
+  return valorTotal;
+  }
+

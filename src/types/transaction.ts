@@ -1,4 +1,4 @@
-export type Transacao = {
+export type Transaction = {
   tipoTransacao: TipoTransacao;
   valor: number;
   data: Date;

@@ -3,13 +3,7 @@ import { TipoTransacao, Transacao } from "../types/transaction.js";
 const saldo = localStorage.getItem('saldo')
 let balance: number = Number(saldo)
 
-const balanceee: Transacao[] = JSON.parse(localStorage.getItem('transactions'), (key: string, value: string) => {
-  if (key === "data") {
-    return new Date(value)
-  }
-}) || [];
-
-export default class BankAccount {
+ export default class BankAccount {
   transaction: TipoTransacao
   date: Date
   valor: number
@@ -29,7 +23,7 @@ export default class BankAccount {
       balance -= amount;
       console.log(`Withdrawal of $${amount} successful. New balance: $:${balance}`);
     } else {
-      throw new Error(`Withdrawal of $:${amount} failed)"Insufficient funds for withdrawal.`);
+      throw new Error("Insufficient funds for withdrawal.");
     }
   }
 

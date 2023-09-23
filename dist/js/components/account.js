@@ -1,10 +1,5 @@
 const saldo = localStorage.getItem('saldo');
 let balance = Number(saldo);
-const balanceee = JSON.parse(localStorage.getItem('transactions'), (key, value) => {
-    if (key === "data") {
-        return new Date(value);
-    }
-}) || [];
 export default class BankAccount {
     transaction;
     date;
@@ -24,7 +19,7 @@ export default class BankAccount {
             console.log(`Withdrawal of $${amount} successful. New balance: $:${balance}`);
         }
         else {
-            throw new Error(`Withdrawal of $:${amount} failed)"Insufficient funds for withdrawal.`);
+            throw new Error("Insufficient funds for withdrawal.");
         }
     }
     static checkBalance() {
